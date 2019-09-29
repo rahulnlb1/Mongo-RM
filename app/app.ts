@@ -10,13 +10,14 @@ const port: string = env.PORT || '3000';
 
 //const api = require('./api');
 
-app.use('/api', Api);
 app.use(Morgan('combined'));
 app.use(BodyParser.urlencoded({ extended: false }));
 app.use(BodyParser.json());
 app.get('/', (req, res) => {
     res.json({"body": "I got it"});
 });
+
+app.use('/api', Api);
 
 Mongoose.connect('mongodb://localhost:27017/ResourceManagementDB', { useNewUrlParser: true});
 const db = Mongoose.connection;
