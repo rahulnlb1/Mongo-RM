@@ -3,19 +3,21 @@
   "version": "1.0.0",
   "description": "This is a Resource Management app using Node and Mongo",
   "main": "index.js",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/rahulnlb1/mongo-rm1.git"
+  },
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "nodemon js/app.js"
   },
   "author": "Rahul Jain",
   "license": "ISC",
   "dependencies": {
-    "@types/express": "^4.17.1",
     "express": "^4.17.1",
-    "ts-loader": "^6.1.2",
-    "typescript": "^3.6.3",
-    "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.8.1",
-    "webpack-node-externals": "^1.7.2"
+    "typescript": "^3.6.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.1",
+    "nodemon": "^1.19.2"
   }
 }

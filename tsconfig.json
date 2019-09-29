@@ -11,8 +11,9 @@
       "moduleResolution": "node",
       "traceResolution": true
     },
-    "files": [
-        "./app/app.ts"
+    "include": [
+        "./app/app.ts",
+        "./app/**/*.ts"
     ]
 
 }
