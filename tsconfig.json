@@ -1,20 +1,19 @@
 {
-    "compilerOptions": {      
-      "target": "ES2019",
-       "sourceMap": true,
-       "outDir": "./js",
-       "noImplicitAny": true,
-      "strictNullChecks": true, 
-      "watch": true,
-      "removeComments": true,
-      "module": "commonjs",
-      "moduleResolution": "node",
-      "traceResolution": true
-    },
-    "include": [
-        "./app/app.ts",
-        "./app/**/*.ts"
-    ]
+  "compilerOptions": {
+    "target": "ES2019",
+    "sourceMap": true,
+    "outDir": "./js",
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "watch": true,
+    "removeComments": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "traceResolution": true
+  },
+  "include": [
+    "./app/app.ts",
+    "./app/**/*.ts"
+  ]
 
 }
-  
