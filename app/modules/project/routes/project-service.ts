@@ -11,51 +11,26 @@ export class ProjectService{
         this.projectModel = ProjectModel.getInstance();     
     }
 
-    public create( req: Request, res: Response ) {
-       const data = new (this.projectModel.getModel())(req.body);
-       data.save( (err: any, project: any) => {
-        if(err) {
-            return res.status(400).json(err);
-        }
-        res.status(200).json(project);
-    });
+    public create = async ( reqBody: Object ): Promise<ProjectInteface>  => {
+        const data = new (this.projectModel.getModel())(reqBody);
+        return await data.save();        
     }
 
-    public get( req: Request, res: Response ) {       
-        this.projectModel.getModel().find( {}, (err: any, projects: any) => {
-         if(err) {
-             return res.status(400).json(err);
-         }
-         res.status(200).json(projects);
-     });
+    public get = async (): Promise<ProjectInteface[]> => {       
+        return await this.projectModel.getModel().find({});
      }
 
-     public getById( req: Request, res: Response ) {       
-        this.projectModel.getModel().find( { ID : req.params.projectID }, (err: any, projects: any) => {
-         if(err) {
-             return res.status(400).json(err);
-         }
-         res.status(200).json(projects);
-     });
+     public getById = async ( projectID: string ): Promise<ProjectInteface[]> => {       
+        return await this.projectModel.getModel().find({ ID : projectID });
      }
 
-     public update( req: Request, res: Response ) {
-        const data = new (this.projectModel.getModel())(req.body);
-        data.updateOne( data, (err: any, project: any) => {
-         if(err) {
-             return res.status(400).json(err);
-         }
-         res.status(200).json(project);
-     });
+     public update = async ( reqBody: Object ): Promise<any> => {
+        const data = new (this.projectModel.getModel())(reqBody);
+        return await data.updateOne( data );
      }
 
-     public delete( req: Request, res: Response ) {        
-        this.projectModel.getModel().deleteOne( {ID: req.params.projectID}, (err: any) => {
-         if(err) {
-             return res.status(400).json(err);
-         }
-         res.status(200);
-     });
+     public delete = async ( projectID: string ): Promise<any> => {        
+        return await this.projectModel.getModel().deleteOne( {ID: projectID} );
      }
  
 }

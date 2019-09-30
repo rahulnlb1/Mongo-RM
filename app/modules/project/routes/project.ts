@@ -15,24 +15,44 @@ export class ProjectRoute {
         this.createRoutes()
     }
 
-    private create = (req: Request, res: Response): void => {
-        this.service.create(req, res);
+    private  create = (req: Request, res: Response): void => {              
+        this.service.create(req.body)
+        .then( data => {            
+            res.status(200).json( data );
+        } )
+        .catch( err => res.status(400).json(err) );         
     }
 
     private update = (req: Request, res: Response): void => {
-        this.service.update(req, res);
+        this.service.update(req.body)
+        .then( data => {            
+            res.status(200).json( data );
+        } )
+        .catch( err => res.status(400).json(err) ); 
     }
 
     private delete = (req: Request, res: Response): void => {
-        this.service.delete(req, res);
+        this.service.delete(req.params.projectID)
+        .then( data => {            
+            res.status(200).json( data );
+        } )
+        .catch( err => res.status(400).json(err) ); 
     } 
 
     private get = (req: Request, res: Response): void => {
-        this.service.get(req, res);
+        this.service.get()
+        .then( data => {            
+            res.status(200).json( data );
+        } )
+        .catch( err => res.status(400).json(err) ); 
     } 
 
     private getByID = (req: Request, res: Response): void => {
-        this.service.getById(req, res);
+        this.service.getById(req.params.projectID)
+        .then( data => {            
+            res.status(200).json( data );
+        } )
+        .catch( err => res.status(400).json(err) ); 
     } 
 
     public createRoutes() {
