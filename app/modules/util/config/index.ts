@@ -1,6 +1,6 @@
 import { env } from 'process';
 
-export class Config {
-    public static DB_HOST: string = env.DB_HOST || '';
-    public static PORT: string = env.PORT || '3000';
-}
+const DB_HOST: string = env.DB_HOST || '';
+const PORT: string = env.PORT || '3000';
+
+export { DB_HOST, PORT };
