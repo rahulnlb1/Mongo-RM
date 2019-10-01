@@ -1,10 +1,10 @@
 import { Model, model } from 'mongoose';
 
 import projectSchema from './project-document';
-import { Project } from '../interface';
+import { Project as IProject } from '../interface';
 
 class ProjectModel {
-    private model: Model<Project>;
+    private model: Model<IProject>;
     public static CollectionName: string = 'Project';
 
     constructor() {
