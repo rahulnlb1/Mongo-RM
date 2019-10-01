@@ -8,11 +8,7 @@ export class ProjectRoute {
   private router: Router;
   private service: ProjectService;
 
-  constructor() {
-    this.router = Router();
-    this.service = new ProjectService();
-    this.createRoutes();
-  }
+  constructor() {}
 
   private create = (req: Request, res: Response): void => {
     this.service
@@ -59,7 +55,7 @@ export class ProjectRoute {
       .catch(err => res.status(400).json(err));
   };
 
-  public createRoutes() {
+  private createRoutes() {
     this.router.post("/", this.create);
     this.router.put("/:projectID", this.update);
     this.router.delete("/:projectID", this.delete);
@@ -68,6 +64,9 @@ export class ProjectRoute {
   }
 
   public getRouter(): Router {
+    this.router = Router();
+    this.service = new ProjectService();
+    this.createRoutes();
     return this.router;
   }
 }

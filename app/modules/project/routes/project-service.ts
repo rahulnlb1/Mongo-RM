@@ -1,34 +1,32 @@
-import { Request, Response } from "express";
+import { Model } from "mongoose";
 
 import { Project as ProjectInteface } from "../interface";
-import { ProjectModel } from "../models";
+import { projectModel } from "../models";
 
 export class ProjectService {
-  private projectModel: ProjectModel;
+  //private model: Model<ProjectInteface>;
 
-  constructor() {
-    this.projectModel = ProjectModel.getInstance();
-  }
+  constructor() {}
 
   public create = async (reqBody: Object): Promise<ProjectInteface> => {
-    const data = new (this.projectModel.getModel())(reqBody);
+    const data = new projectModel(reqBody);
     return await data.save();
   };
 
   public get = async (): Promise<ProjectInteface[]> => {
-    return await this.projectModel.getModel().find({});
+    return await projectModel.find({});
   };
 
   public getById = async (projectID: string): Promise<ProjectInteface[]> => {
-    return await this.projectModel.getModel().find({ ID: projectID });
+    return await projectModel.find({ ID: projectID });
   };
 
   public update = async (reqBody: Object): Promise<any> => {
-    const data = new (this.projectModel.getModel())(reqBody);
+    const data = new projectModel(reqBody);
     return await data.updateOne(data);
   };
 
   public delete = async (projectID: string): Promise<any> => {
-    return await this.projectModel.getModel().deleteOne({ ID: projectID });
+    return await projectModel.deleteOne({ ID: projectID });
   };
 }

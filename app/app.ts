@@ -1,14 +1,10 @@
 import { env } from "process";
-import { resolve } from "path";
 import * as Express from "express";
 import * as Mongoose from "mongoose";
 import * as BodyParser from "body-parser";
 import * as Morgan from "morgan";
-import { config } from "dotenv";
 
 import { ProjectRoute } from "./modules/project";
-
-config({ path: resolve(__dirname, "../.env") });
 
 const port: string = env.PORT || "3000";
 const mongoURL: string = env.DB_HOST || "";
