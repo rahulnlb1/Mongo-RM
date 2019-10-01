@@ -4,7 +4,7 @@ The Project route is `/project`.
 
 To create project use following example:
 
-```
+```js
 POST: /project
 Body:
     {
@@ -19,7 +19,7 @@ Body:
 
 To update project use the following example:
 
-```
+```js
 PUT: /project/Project1
 Body:
     {
@@ -36,18 +36,18 @@ Body:
 
 To delete:
 
-```
+```js
 DELETE: /project/Project1
 ```
 
 To get app projects:
 
-```
+```js
 GET: /project
 ```
 
 To get a particular project
 
-```
+```js
 GET: /project/Project1
 ```
