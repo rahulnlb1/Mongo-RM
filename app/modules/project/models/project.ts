@@ -1,6 +1,6 @@
-import { Model, Schema, model } from 'mongoose';
+import { Model, model } from 'mongoose';
 
-import { ProjectDocument } from './project-document';
+import projectSchema from './project-document';
 import { Project } from '../interface';
 
 class ProjectModel {
@@ -8,9 +8,7 @@ class ProjectModel {
     public static CollectionName: string = 'Project';
 
     constructor() {
-        const projectDocument = new ProjectDocument();
-        const schema = projectDocument.getSchema();
-        this.model = model(ProjectModel.CollectionName, schema);
+        this.model = model(ProjectModel.CollectionName, projectSchema);
     }
 
     public getModel() {
@@ -20,4 +18,4 @@ class ProjectModel {
 
 const projectModelObj = new ProjectModel();
 const projectModel = projectModelObj.getModel();
-export { projectModel };
+export default projectModel;

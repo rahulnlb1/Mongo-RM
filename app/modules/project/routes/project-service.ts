@@ -1,16 +1,11 @@
-import { Model } from 'mongoose';
-
 import { Project as ProjectInteface } from '../interface';
-import { projectModel } from '../models';
+import projectModel from '../models';
 
 export class ProjectService {
-    //private model: Model<ProjectInteface>;
-
     constructor() {}
 
     public create = async (reqBody: Object): Promise<ProjectInteface> => {
-        const data = new projectModel(reqBody);
-        return await data.save();
+        return await projectModel.create(reqBody);
     };
 
     public get = async (): Promise<ProjectInteface[]> => {
@@ -21,9 +16,8 @@ export class ProjectService {
         return await projectModel.find({ ID: projectID });
     };
 
-    public update = async (reqBody: Object): Promise<any> => {
-        const data = new projectModel(reqBody);
-        return await data.updateOne(data);
+    public update = async (reqParam: string, reqBody: Object): Promise<any> => {
+        return await projectModel.updateOne({ ID: reqParam }, reqBody);
     };
 
     public delete = async (projectID: string): Promise<any> => {

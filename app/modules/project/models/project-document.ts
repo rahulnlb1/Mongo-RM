@@ -28,3 +28,5 @@ export class ProjectDocument {
         return this.schema;
     };
 }
+const document = new ProjectDocument();
+export default document.getSchema();

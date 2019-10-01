@@ -8,7 +8,9 @@ export class ProjectRoute {
     private router: Router;
     private service: ProjectService;
 
-    constructor() {}
+    constructor() {
+        this.service = new ProjectService();
+    }
 
     private create = (req: Request, res: Response): void => {
         this.service
@@ -21,7 +23,7 @@ export class ProjectRoute {
 
     private update = (req: Request, res: Response): void => {
         this.service
-            .update(req.body)
+            .update(req.params.projectID, req.body)
             .then(data => {
                 res.status(200).json(data);
             })
@@ -55,18 +57,15 @@ export class ProjectRoute {
             .catch(err => res.status(400).json(err));
     };
 
-    private createRoutes = (): void => {
-        this.router.post('/', this.create);
-        this.router.put('/:projectID', this.update);
-        this.router.delete('/:projectID', this.delete);
-        this.router.get('/', this.get);
-        this.router.get('/:projectID', this.getByID);
-    };
-
     public getRouter = (): Router => {
-        this.router = Router();
-        this.service = new ProjectService();
-        this.createRoutes();
-        return this.router;
+        const router = Router();
+
+        router.post('/', this.create);
+        router.put('/:projectID', this.update);
+        router.delete('/:projectID', this.delete);
+        router.get('/', this.get);
+        router.get('/:projectID', this.getByID);
+
+        return router;
     };
 }

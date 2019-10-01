@@ -1,1 +1,3 @@
-export * from './project-model';
+import projectModel from './project';
+
+export default projectModel;
