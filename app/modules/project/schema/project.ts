@@ -1,5 +1,3 @@
-import { Schema } from 'mongoose';
-
 export const project = {
     ID: {
         type: String,
