@@ -69,3 +69,7 @@ export class ProjectRoute {
         return router;
     };
 }
+const BasePath = '/project';
+const projectRoute = new ProjectRoute();
+const projectRouter = projectRoute.getRouter();
+export { BasePath, projectRouter };
