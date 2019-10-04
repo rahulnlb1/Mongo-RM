@@ -1,1 +1,1 @@
-export { ProjectRoute } from './routes';
+export { BasePath, projectRouter } from './routes';

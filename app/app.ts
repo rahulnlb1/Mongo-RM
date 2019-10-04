@@ -1,29 +1,34 @@
-import * as Express from 'express';
 import * as Mongoose from 'mongoose';
-import * as BodyParser from 'body-parser';
-import * as Morgan from 'morgan';
 
-import { ProjectRoute } from './modules/project';
-import { PORT, DB_HOST } from './modules/util/config';
+import { DB_HOST } from './modules/util/config';
+import { Server } from './server';
 
-const app: Express.Application = Express();
-app.use(Morgan('combined'));
-app.use(BodyParser.urlencoded({ extended: false }));
-app.use(BodyParser.json());
-app.get('/', (req, res) => {
-    res.json({ message: 'Welcome to RM!!!' });
-});
+export class App {
+    server: Server;
+    dbHost: string;
+    db = Mongoose.Connection;
 
-const projectRoute = new ProjectRoute();
-app.use(ProjectRoute.BasePath, projectRoute.getRouter());
+    constructor() {
+        this.server = new Server();
+        this.dbHost = DB_HOST;
+    }
 
-Mongoose.connect(DB_HOST, { useNewUrlParser: true });
-const db = Mongoose.connection;
+    initApp = () => {
+        this.initDB();
+    };
 
-db.on('error', console.error.bind(console, 'connection: error'));
-db.on('open', () => {
-    console.log('Mongo Connected');
-    app.listen(PORT, () => {
-        console.log(`Listening to port ${PORT}`);
-    });
-});
+    private initServer = () => {
+        this.server.startApp();
+    };
+
+    private initDB = () => {
+        Mongoose.connect(this.dbHost, { useNewUrlParser: true });
+        const db = Mongoose.connection;
+
+        db.on('error', console.error.bind(console, 'connection: error'));
+        db.on('open', () => {
+            console.log('Mongo Connected');
+            this.initServer();
+        });
+    };
+}

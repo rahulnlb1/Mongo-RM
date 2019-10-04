@@ -12,6 +12,7 @@
     "traceResolution": true
   },
   "include": [
+    "./index.ts",
     "./app/app.ts",
     "./app/**/*.ts"
   ]
