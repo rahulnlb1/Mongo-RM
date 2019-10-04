@@ -8,7 +8,7 @@
     "url": "https://github.com/rahulnlb1/mongo-rm1.git"
   },
   "scripts": {
-    "start": "nodemon -r dotenv/config js/index.js"
+    "start": "node start.js"
   },
   "author": "Rahul Jain",
   "license": "ISC",
