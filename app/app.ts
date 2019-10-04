@@ -23,7 +23,7 @@ export class App {
         return this.server;
     };
 
-    private initRoutes = (): void => {
+    public initRoutes = (): void => {
         this.server.addRouter(HealthBasePath, healthRouter);
         this.server.addRouter(ProjectBasePath, projectRouter);
     };
@@ -33,7 +33,6 @@ export class App {
     };
 
     private initDB = () => {
-        this.initRoutes();
         Mongoose.connect(this.dbHost, { useNewUrlParser: true });
         const db = Mongoose.connection;
 
