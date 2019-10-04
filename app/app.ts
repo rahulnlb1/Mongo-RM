@@ -13,8 +13,12 @@ export class App {
         this.dbHost = DB_HOST;
     }
 
-    initApp = () => {
+    public initApp = () => {
         this.initDB();
+    };
+
+    public getServer = (): Server => {
+        return this.server;
     };
 
     private initServer = () => {

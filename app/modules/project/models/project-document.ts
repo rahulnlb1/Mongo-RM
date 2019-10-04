@@ -11,14 +11,14 @@ export class ProjectDocument {
     }
 
     private beforeSave = (): void => {
-        // this.schema.pre('save', ( next: Function ) => {
+        // this.schema.pre('save', (next: Function) => {
         //     const project = this;
-        //     if(project){
+        //     if (globalThis) {
         //         const now: Date = new Date();
-        //         if( !project.createdOn ) {
-        //             project.createdOn = now;
+        //         if (!this.createdOn) {
+        //             this.createdOn = now;
         //         }
-        //         project.changedOn = now;
+        //         this.changedOn = now;
         //     }
         //     next();
         // });
