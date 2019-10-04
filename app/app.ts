@@ -31,7 +31,7 @@ export class App {
 
         db.on('error', console.error.bind(console, 'connection: error'));
         db.on('open', () => {
-            console.log('Mongo Connected ');
+            console.log('Mongo Connected');
             this.initServer();
         });
     };
