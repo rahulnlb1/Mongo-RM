@@ -1,6 +1,8 @@
 import * as Mongoose from 'mongoose';
 
 import { DB_HOST } from './modules/util/config';
+import { BasePath as ProjectBasePath, projectRouter } from './modules/project';
+import { BasePath as HealthBasePath, healthRouter } from './modules/health';
 import { Server } from './server';
 
 export class App {
@@ -21,11 +23,17 @@ export class App {
         return this.server;
     };
 
+    private initRoutes = (): void => {
+        this.server.addRouter(HealthBasePath, healthRouter);
+        this.server.addRouter(ProjectBasePath, projectRouter);
+    };
+
     private initServer = () => {
         this.server.startApp();
     };
 
     private initDB = () => {
+        this.initRoutes();
         Mongoose.connect(this.dbHost, { useNewUrlParser: true });
         const db = Mongoose.connection;
 
