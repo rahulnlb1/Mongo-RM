@@ -1,4 +1,4 @@
-import * as Mongoose from 'mongoose';
+import Mongoose from 'mongoose';
 
 import { DB_HOST, PORT } from './modules/util/config';
 import { BasePath as ProjectBasePath, projectRouter } from './modules/project';

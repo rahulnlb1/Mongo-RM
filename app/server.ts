@@ -1,7 +1,7 @@
 import * as Http from 'http';
-import * as Express from 'express';
-import * as BodyParser from 'body-parser';
-import * as Morgan from 'morgan';
+import Express from 'express';
+import BodyParser from 'body-parser';
+import Morgan from 'morgan';
 
 import { PORT } from './modules/util/config';
 
