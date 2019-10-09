@@ -23,9 +23,13 @@ export class Server {
         this.server.use(basePath, routerInstance);
     };
 
-    startApp = (): void => {
-        this.server.listen(this.port, () => {
-            console.log(`Listening to port ${this.port}`);
+    start = (): Promise<string> => {
+        return new Promise((resolve: (message: string) => void) => {
+            this._server = this.server.listen(this.port, () => {
+                const message = `Listening to port ${this.port}`;
+                console.log(message);
+                resolve(message);
+            });
         });
     };
 }
