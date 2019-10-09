@@ -29,8 +29,11 @@ export class App {
         this.server.addRouter(ProjectBasePath, projectRouter);
     };
 
-    private initServer = (): void => {
-        this.server.startApp();
+    /**
+     * Return type from this method is not needed to be explicitly written, as it can be easily inferred by TS
+     */
+    private initServer = () => {
+        return this.server.start();
     };
 
     private initDB = () => {
