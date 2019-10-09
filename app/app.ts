@@ -16,7 +16,7 @@ export class App {
     }
 
     public initApp = () => {
-        this.initDB();
+        return Promise.all([this.initDB(), this.initServer()]);
     };
 
     public getServer = (): Server => {
@@ -37,13 +37,17 @@ export class App {
     };
 
     private initDB = () => {
-        Mongoose.connect(this.dbHost, { useNewUrlParser: true });
-        const db = Mongoose.connection;
-
-        db.on('error', console.error.bind(console, 'connection: error'));
-        db.on('open', () => {
-            console.log('Mongo Connected');
-            this.initServer();
+        return new Promise((resolve: () => void, reject: (error: Error) => void) => {
+            Mongoose.connect(this.dbHost, { useNewUrlParser: true });
+            const db = Mongoose.connection;
+            db.on('error', (error: Error) => {
+                console.error('connection: error');
+                reject(error);
+            });
+            db.on('open', () => {
+                console.log('Mongo Connected');
+                resolve();
+            });
         });
     };
 }
