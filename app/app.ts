@@ -1,6 +1,6 @@
 import * as Mongoose from 'mongoose';
 
-import { DB_HOST } from './modules/util/config';
+import { DB_HOST, PORT } from './modules/util/config';
 import { BasePath as ProjectBasePath, projectRouter } from './modules/project';
 import { BasePath as HealthBasePath, healthRouter } from './modules/health';
 import { Server } from './server';
@@ -10,8 +10,8 @@ export class App {
     dbHost: string;
     db = Mongoose.Connection;
 
-    constructor() {
-        this.server = new Server();
+    constructor(port: string = PORT) {
+        this.server = new Server(port);
         this.dbHost = DB_HOST;
     }
 
@@ -24,11 +24,12 @@ export class App {
     };
 
     public initRoutes = (): void => {
+        this.server.attachMiddlewares();
         this.server.addRouter(HealthBasePath, healthRouter);
         this.server.addRouter(ProjectBasePath, projectRouter);
     };
 
-    private initServer = () => {
+    private initServer = (): void => {
         this.server.startApp();
     };
 

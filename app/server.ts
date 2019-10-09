@@ -11,7 +11,6 @@ export class Server {
     constructor(port: string = PORT) {
         this.server = Express();
         this.port = port;
-        this.attachMiddlewares();
     }
 
     attachMiddlewares = (): void => {
